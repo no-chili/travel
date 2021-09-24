@@ -18,6 +18,7 @@ export default {
 <style>
 
 html,body{
-    background-color: rgb(144, 187, 134);
+    background-color: rgb(119, 190, 199);
+    height: 100vh;
 }
 </style>

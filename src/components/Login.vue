@@ -3,23 +3,43 @@
     <div class="loginbox">
       <div class="imgbox"></div>
       <div class="login">
-        <div class="left"></div>
+        <div class="left" @click="change"></div>
         <div class="right">
-          <div class="outbox">
-              <div class="logincard">
-            <div>
-              <input type="text" placeholder="用户名" />
-              <input type="text" placeholder="密码" />
-              <div class="loginbtn">登录</div>
+          <div :class="classArr">
+            <div class="logincard">
+              <div>
+                <input
+                  type="text"
+                  v-model="loginInfo.username"
+                  placeholder="用户名"
+                />
+                <input
+                  type="password"
+                  v-model="loginInfo.password"
+                  placeholder="密码"
+                />
+                <div class="login_b" @click="login">登录</div>
+              </div>
             </div>
-          </div>
-          <div class="registercard">
-            <input type="text" placeholder="用户名" />
-            <input type="text" placeholder="邮箱" />
-            <input type="text" placeholder="密码" />
-            <input type="text" placeholder="确认密码" />
-            <div class="registerbtn">注册</div>
-          </div>
+            <div class="registercard">
+              <input
+                type="text"
+                v-model="registerInfo.username"
+                placeholder="用户名"
+              />
+              <input
+                type="email"
+                v-model="registerInfo.email"
+                placeholder="邮箱"
+              />
+              <input
+                type="password"
+                v-model="registerInfo.password"
+                placeholder="密码"
+              />
+              <input type="password" v-model="ack" placeholder="确认密码" />
+              <div class="register_b" @click="register">注册</div>
+            </div>
           </div>
         </div>
       </div>
@@ -30,6 +50,58 @@
 <script>
 export default {
   name: "Login",
+  data() {
+    return {
+      flag: true,
+      classArr: ["outbox"],
+      loginInfo: {
+        username: "",
+        password: "",
+      },
+      registerInfo: {
+        username: "",
+        email: "",
+        password: "",
+      },
+      ack: "",
+    };
+  },
+  methods: {
+    change() {
+      this.flag = !this.flag;
+      console.log(this.flag);
+      if (this.flag == true) {
+        this.classArr.pop();
+      } else {
+        this.classArr.push("switch");
+      }
+    },
+    // 发起登录请求
+    login() {
+      if (this.loginInfo.username && this.loginInfo.password) {
+        //发起网络请求
+      } else {
+        return alert("用户名和密码不允许为空");
+      }
+    },
+    // 发起注册请求
+    register() {
+      if (
+        this.registerInfo.username &&
+        this.registerInfo.password &&
+        this.registerInfo.email
+      ) 
+      {
+        if (this.registerInfo.password !== this.ack) {
+          return alert("两次密码不一致");
+        } else {
+          //发起网络请求
+        }
+      }else{
+        return alert('注册信息不完整')
+      }
+    },
+  },
 };
 </script>
 
@@ -73,7 +145,6 @@ input {
   background: url("../assets/image/login.jpg") no-repeat;
   background-size: cover;
   z-index: 9;
-  transition: all 2s;
 }
 
 .login {
@@ -84,26 +155,29 @@ input {
 }
 
 .left {
+  cursor: pointer;
+  overflow: hidden;
   flex: 1;
   width: 50%;
 }
 
 .right {
-    position: relative;
+  position: relative;
   flex: 1;
   width: 50%;
-  background-color: rgb(123, 141, 119);
+  background-color: #515a6e;
+  overflow: hidden;
 }
 
-.outbox{
-    height: 100%;
-    position: absolute;
-    top:0;
-    transition: all ease-in-out 1s;
+.outbox {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: all ease-in-out 1s;
 }
 
-.outbox:hover{
-    top: -100%;
+.switch {
+  top: -100%;
 }
 
 .logincard {
@@ -113,14 +187,16 @@ input {
   margin-left: 65px;
   width: 300px;
   height: 100%;
-  background-color: #555;
+  background-color: #515a6e;
 }
 
-.loginbtn {
+.login_b {
+  cursor: pointer;
   width: 70px;
   padding: 0 7px;
   margin-left: 120px;
   border-radius: 5px;
+  font-size: 26px;
   font-family: fantasy;
   background-color: #fff;
 }
@@ -129,12 +205,14 @@ input {
   margin-left: 65px;
   width: 300px;
   height: 100%;
-  background-color: rgb(226, 182, 182);
+  background-color: #515a6e;
 }
 
-.registerbtn {
+.right .register_b {
+  cursor: pointer;
   width: 70px;
   padding: 0 7px;
+  font-size: 26px;
   margin-left: 120px;
   border-radius: 5px;
   font-family: fantasy;
