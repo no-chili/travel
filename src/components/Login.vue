@@ -198,7 +198,14 @@ input {
   border-radius: 5px;
   font-size: 26px;
   font-family: fantasy;
+  background-color: #515a6e;
+  color: #fff;
+  transition: all .5s;
+}
+
+.login_b:hover{
   background-color: #fff;
+  color: #515a6e;
 }
 
 .registercard {
@@ -216,6 +223,14 @@ input {
   margin-left: 120px;
   border-radius: 5px;
   font-family: fantasy;
+  background-color:  #515a6e;
+  color: #fff;
+  transition: all .5s;
+}
+
+.register_b:hover{
   background-color: #fff;
+  color:  #515a6e;
+  
 }
 </style>

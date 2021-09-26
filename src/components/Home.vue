@@ -1,12 +1,6 @@
 <template>
   <div>
-    <header>
-      <nav>
-        <a href="#"><span>HOME</span></a>
-        <span></span>
-        <a href="#"><span>MYLOG</span></a>
-      </nav>
-    </header>
+    <Header/>
     <!-- 主体部分 -->
     <section>
       <div class="container">
@@ -41,11 +35,13 @@
 <script>
 import Card from './Card.vue';
 import Scenic from './Scenic.vue'
+import Header from './Header.vue'
 export default {
   name: "Home",
   components:{
       Scenic,
-    Card
+    Card,
+    Header
   }
 };
 </script>
@@ -54,27 +50,6 @@ export default {
 a{
   color: #ddd;
 }
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 30px;
-  width: 100vw;
-  height: 100px;
-  background-color:rgb(113, 174, 182);
-  box-shadow: 0 3px 10px;
-  margin-bottom: px;
-}
-
-header nav{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-  font-size: 26px;
-}
-
 
 .container {
   width: 100vw;

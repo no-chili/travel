@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card"  @click="gotoInfo">
     <div class="sceneryimg">
         <img src="../assets/image/长白山.jpg" alt="">
     </div>
@@ -13,6 +13,11 @@
 <script>
 export default {
   name: "Card",
+  methods:{
+    gotoInfo(){
+      this.$router.push('/sceneryinfo')
+    }
+  }
 };
 </script>
 
@@ -23,9 +28,9 @@ export default {
   margin: 20px 18.5px;
   width: 200px;
   height: 250px;
-  background-color: #666;
+  background-color: rgb(119, 190, 199);
   text-align: center;
-  color: rgb(230, 203, 216);
+  color: rgb(231, 225, 228);
   overflow: hidden;
 }
 .sceneryimg {
@@ -33,15 +38,8 @@ export default {
   width: 100%;
   height: 150px;
   background-size: cover;
-  background-color: #6978;
+  background-color: rgb(119, 190, 199);
 }
-
- .sceneryimg img{
-     position: absolute;
-     left: -25%;
-     height: 150px;
- }
-
 .sceneryinfo {
   text-indent: 2em;
   width: 100%;
