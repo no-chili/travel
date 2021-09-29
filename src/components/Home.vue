@@ -60,7 +60,7 @@ a{
   position: relative;
   margin: 50px 50px 0;
   height: 600px;
-  background-color: rgba(99, 99, 99, 0.3);
+  /* background-color: rgba(99, 99, 99, 0.3); */
 }
 
 .card-inner p{

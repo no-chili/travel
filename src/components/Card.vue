@@ -28,17 +28,21 @@ export default {
   margin: 20px 18.5px;
   width: 200px;
   height: 250px;
+  border-radius: 10px 10pa 0 0;
   background-color: rgb(119, 190, 199);
   text-align: center;
   color: rgb(231, 225, 228);
+  transition: all 0.5s;
   overflow: hidden;
 }
 .sceneryimg {
     position: relative;
   width: 100%;
   height: 150px;
+  border-radius: 15px 15px;
   background-size: cover;
   background-color: rgb(119, 190, 199);
+  overflow: hidden;
 }
 .sceneryinfo {
   text-indent: 2em;
@@ -50,5 +54,9 @@ export default {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+}
+
+.card:hover{
+  color: #333;
 }
 </style>

@@ -4,7 +4,9 @@
     <div class="Sceneryinfo">
       <div class="maxwidth">
         <!-- 风景大图预览 -->
-        <h1>预览大图</h1>
+        <h1>
+          预览大图
+        </h1>
         <div class="scenerybox">
           <!-- 轮播 -->
           <Carousel
@@ -71,9 +73,10 @@
           <li><img src="../assets/image/cbs.jpg" alt="" /></li>
         </ul>
         <!-- 地图 -->
-        <h2>景点地图</h2>
+        <h2 @click="getCenter">景点地图</h2>
         <div class="scenerymap">
-          <el-amap vid="amapDemo" :zoom="zoom" :center="center"> </el-amap>
+          <el-amap vid="amapDemo"  :zoom="zoom" :center="center" > 
+          </el-amap>
         </div>
         <!-- 点评 -->
         <h2>景点评论</h2>
@@ -132,7 +135,7 @@
           v-model="infomation"
           height="500px"
         >
-          <p>
+          <p style="text-indent:2em">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
             ipsum, incidunt ipsam ex suscipit in minima animi molestias corrupti
             nulla reprehenderit maiores harum rem aut voluptate consequatur
@@ -194,6 +197,11 @@
             Eius ipsam odio quaerat, earum, magni optio doloribus adipisci
             aperiam voluptatibus accusamus aliquam.
           </p>
+          <div class="number">
+            <div><Icon type="md-thumbs-up" size="50" title="赞" />66</div>
+            <div><Icon type="md-heart" size="50" title="收藏" />66</div>
+            <div><Icon type="ios-chatbubbles" size="50" title="评论" />99</div>
+          </div>
         </Drawer>
       </div>
     </div>
@@ -201,7 +209,19 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Header from "./Header.vue";
+// 高德地图
+import AMap from 'vue-amap';
+import axios from 'axios';
+
+Vue.use(AMap);
+// 初始化高德地图的 key 和插件
+AMap.initAMapApiLoader({
+    key: '0a125e10974f3f7832802dbb904b29c1',
+    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+    v: '1.4.4'
+});
 
 export default {
   name: "SceneryInfo",
@@ -214,10 +234,22 @@ export default {
       infomation: false,
       valueDisabled: 2,
       //   高德地图配置
+      city:'普洱',
       zoom: 15,
       center: [125.441458, 43.883363],
     };
   },
+  methods:{
+    getCenter(){
+      let Url=`https://restapi.amap.com/v3/geocode/geo?address=北京市朝阳区阜通东大街6号&output=JSON&key=4454e91b25f893ac9603dbb2ade95316`
+      axios.get(Url).then((val)=>{
+        console.log(val.data.geocodes[0].location);
+      })
+    }
+  },
+  created(){
+
+  }
 };
 </script>
 
@@ -227,6 +259,7 @@ img {
   height: 100%;
   object-fit: cover;
 }
+
 .Sceneryinfo {
   display: flex;
   justify-content: center;
@@ -270,7 +303,6 @@ img {
 
 .otherscenery {
   width: 1200px;
-  /* background-color: #2db7f5; */
 }
 
 .commentbox {
@@ -300,12 +332,24 @@ img {
   width: 1200px;
 }
 
-.footer li{
+.footer li {
   flex: 1;
   margin: 20px;
 }
 
-.footer li:hover{
+.footer li:hover {
   color: red;
 }
+
+.number{
+  display: flex;
+  width: 1536p;
+  height: 50px;
+}
+
+.number div{
+  flex: 1;
+  text-align: center;
+}
+
 </style>

@@ -1,8 +1,7 @@
 <template>
   <div class="scenery">
         <Header/>
-       <div class="search">
-         
+       <div class="search"> 
        </div>
        <Card/>
        <Card/>

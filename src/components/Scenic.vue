@@ -6,7 +6,7 @@
     <div class="bar">
       <h1 class="scenerytitle">推荐景点</h1>
       <ul class="scenerycard">
-        <li class="card">
+        <li class="card" @click="getc">
           <p>西湖</p>
         </li>
         <li class="card"></li>
@@ -20,8 +20,21 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "Scenic",
+  methods:{   
+    getc(){
+      axios.post('http://localhost:8080/api/SceneryInfo/city',{
+        city:'普洱'
+      }).then((res)=>{
+        console.log(res);
+      }).catch((err)=>{
+        console.log(err);
+      })
+      
+    }
+  }
 };
 </script>
 
@@ -88,6 +101,12 @@ export default {
   background: #000;
   font-size: 20px;
   text-align: center;
+  transition:all 0.5s;
+  color:transparent;
+  
+}
+
+.card:hover{
   color: rgb(202, 191, 191);
 }
 
