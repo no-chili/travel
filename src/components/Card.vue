@@ -28,7 +28,7 @@ export default {
   margin: 20px 18.5px;
   width: 200px;
   height: 250px;
-  border-radius: 10px 10pa 0 0;
+  border-radius: 10px 10px;
   background-color: rgb(119, 190, 199);
   text-align: center;
   color: rgb(231, 225, 228);

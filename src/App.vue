@@ -20,5 +20,6 @@ export default {
 html,body{
     background-color: rgb(119, 190, 199);
     height: 100vh;
+    min-height: 100vh;
 }
 </style>
