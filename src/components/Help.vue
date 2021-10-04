@@ -39,27 +39,29 @@ export default {
   /* background-color: #fff; */
   font-size: 50px;
   animation: travel 3s forwards;
-  animation-delay: 9s;
+  animation-delay: 4.5s;
   overflow: hidden;
 }
 .title .tiandi {
-  animation: title 3s forwards;
+  animation: title 1.5s forwards;
   animation-delay: 0s;
   opacity: 0;
 }
 .title .zhongsheng {
-  animation: title 3s forwards;
-  animation-delay: 3s;
+  animation: title 1.5s forwards;
+  animation-delay: 1.5s;
   opacity: 0;
 }
 .title .ziji {
-  animation: title 3s forwards;
-  animation-delay: 6s;
+  animation: title 1.5s forwards;
+  animation-delay: 3s;
   opacity: 0;
 }
 .t_title{
   cursor: pointer;
   transition: all 0.6s;
+  animation:t_travel 3s forwards;
+  animation-delay: 7.5s;
 }
 .t_title:hover{
   background-color: #fff;
@@ -89,6 +91,12 @@ export default {
   100%{
     height: 0;
     opacity: 0;
+  }
+}
+
+@keyframes t_travel {
+  100%{
+    font-size: 50px;
   }
 }
 </style>

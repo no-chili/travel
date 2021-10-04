@@ -1,20 +1,25 @@
 <template>
-  <div class="card"  @click="gotoInfo">
+<div>
+  <div class="card" v-for="(item,index) in it" :key="index" @click="gotoInfo(item.name)">
     <div class="sceneryimg">
-        <img src="../assets/image/长白山.jpg" alt="">
+        <img :src="item.sceneryImgUrl[0]">
     </div>
-    <h2>凤阳山</h2>
+    <h2>{{item.name}}</h2>
     <p class="sceneryinfo">
-      凤阳山，位于浙江龙泉东南50公里处，面积23平方公里，江浙第一高峰，保护区内植物资源极为丰富，其中白豆杉、华东黄杉、长柄双花木等20余种被列入《中国珍稀濒危保护植物名录》，野生动物众多，有云豹、苏门羚、黄腹角雉、赤腹鹰等，其中国家一级保护动物9种。素有“清凉天地”、“天然公园”之美誉的凤阳山，是休闲度假、旅游避暑的好去处，极端最高气温只在30.2度。保护区内有景点近百处，其中江浙第一高峰――黄茅尖，海拔1929米；瓯江发源地――龙渊峡；全省海拔最高的人工湖――凤阳湖；世界香菇文化遗址――凤阳庙，以及小黄山，双折瀑布等，都是旅游胜地。
+      {{item.infomation}}
     </p>
   </div>
+</div> 
 </template>
 
 <script>
 export default {
   name: "Card",
+  props:["it"],
   methods:{
-    gotoInfo(){
+    gotoInfo(value){
+      console.log(value);
+      window.sessionStorage.setItem('sceneryName',value)  
       this.$router.push('/sceneryinfo')
     }
   }

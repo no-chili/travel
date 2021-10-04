@@ -4,9 +4,7 @@
     <div class="Sceneryinfo">
       <div class="maxwidth">
         <!-- 风景大图预览 -->
-        <h1>
-          预览大图
-        </h1>
+        <h1>{{ ceneryInfo.name }}</h1>
         <div class="scenerybox">
           <!-- 轮播 -->
           <Carousel
@@ -18,47 +16,27 @@
           >
             <CarouselItem>
               <div class="demo-carousel">
-                <img
-                  @click="infomation = true"
-                  src="../assets/image/cbs.jpg"
-                  alt=""
-                />
+                <img @click="infomation = true" :src="img1" alt="" />
               </div>
             </CarouselItem>
             <CarouselItem>
               <div class="demo-carousel">
-                <img
-                  @click="infomation = true"
-                  src="../assets/image/cbs.jpg"
-                  alt=""
-                />
+                <img @click="infomation = true" :src="img2" alt="" />
               </div>
             </CarouselItem>
             <CarouselItem>
               <div class="demo-carousel">
-                <img
-                  @click="infomation = true"
-                  src="../assets/image/cbs.jpg"
-                  alt=""
-                />
+                <img @click="infomation = true" :src="img3" alt="" />
               </div>
             </CarouselItem>
             <CarouselItem>
               <div class="demo-carousel">
-                <img
-                  @click="infomation = true"
-                  src="../assets/image/cbs.jpg"
-                  alt=""
-                />
+                <img @click="infomation = true" :src="img4" alt="" />
               </div>
             </CarouselItem>
             <CarouselItem>
               <div class="demo-carousel">
-                <img
-                  @click="infomation = true"
-                  src="../assets/image/cbs.jpg"
-                  alt=""
-                />
+                <img @click="infomation = true" :src="img5" />
               </div>
             </CarouselItem>
           </Carousel>
@@ -66,17 +44,16 @@
         <!-- 景点图片 -->
         <h2>景点照片</h2>
         <ul class="scenerynav">
-          <li><img src="../assets/image/cbs.jpg" alt="" /></li>
-          <li><img src="../assets/image/cbs.jpg" alt="" /></li>
-          <li><img src="../assets/image/cbs.jpg" alt="" /></li>
-          <li><img src="../assets/image/cbs.jpg" alt="" /></li>
-          <li><img src="../assets/image/cbs.jpg" alt="" /></li>
+          <li @click="value2 = 0"><img :src="img1" /></li>
+          <li @click="value2 = 1"><img :src="img2" /></li>
+          <li @click="value2 = 2"><img :src="img3" /></li>
+          <li @click="value2 = 3"><img :src="img4" /></li>
+          <li @click="value2 = 4"><img :src="img5" /></li>
         </ul>
         <!-- 地图 -->
         <h2 @click="getCenter">景点地图</h2>
         <div class="scenerymap">
-          <el-amap vid="amapDemo"  :zoom="zoom" :center="center" > 
-          </el-amap>
+          <el-amap vid="amapDemo" :zoom="zoom" :center="center"> </el-amap>
         </div>
         <!-- 点评 -->
         <h2>景点评论</h2>
@@ -129,73 +106,13 @@
           <li><Icon type="ios-chatbubbles" size="50" title="评论" /></li>
         </ul>
         <Drawer
-          title="Basic Drawer"
           placement="top"
           :closable="false"
           v-model="infomation"
-          height="500px"
+          height="300px"
         >
-          <p style="text-indent:2em">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-            ipsum, incidunt ipsam ex suscipit in minima animi molestias corrupti
-            nulla reprehenderit maiores harum rem aut voluptate consequatur
-            distinctio porro aperiam earum hic quidem magnam enim sunt. Hic
-            voluptatem perspiciatis vero earum. Harum deleniti vero doloremque
-            doloribus iste perferendis reiciendis hic ullam voluptatem quidem
-            qui aspernatur veniam a distinctio, nisi molestias nostrum
-            voluptatibus fugit dolorem itaque reprehenderit, earum quaerat.
-            Soluta, consequatur quasi quibusdam deserunt corporis magni tempora
-            laboriosam iure. Fuga, temporibus voluptatibus, officiis officia
-            blanditiis voluptas cum, et ipsam labore dolor neque molestiae! Qui
-            deserunt aliquid modi expedita sapiente deleniti necessitatibus!
-            Animi omnis fugiat optio ipsa eius in libero unde tempore tenetur
-            repellendus hic, sed deserunt accusamus vel, quae aspernatur
-            laudantium necessitatibus ea commodi quibusdam cupiditate sint sit
-            excepturi eum! Asperiores tempora dolores labore in eveniet pariatur
-            cupiditate numquam aut velit obcaecati placeat accusamus iusto
-            adipisci voluptas molestias aliquid nisi esse, sequi earum illo quae
-            optio? Provident mollitia voluptatum necessitatibus commodi earum
-            enim ab magnam eveniet nostrum aliquid voluptatem officia assumenda
-            deleniti neque recusandae dolorem maxime numquam dolor laboriosam
-            autem, ducimus totam illo quod. Ipsa voluptatibus libero ad ipsum
-            sapiente deserunt, ullam nulla praesentium amet animi quis, eius
-            magni atque. Repellendus aspernatur alias nemo corrupti, magni atque
-            velit perspiciatis molestias ad hic provident quae optio ex. Ut
-            maiores magnam tenetur delectus consequatur repellendus deleniti,
-            odio mollitia, dolore exercitationem corrupti amet culpa ab
-            suscipit. Quia aperiam earum obcaecati similique tempora dolore ex
-            dolores dolorem architecto. Aperiam perspiciatis consequuntur,
-            corporis adipisci facilis provident deleniti blanditiis similique
-            distinctio, vero aliquam nostrum. Reiciendis assumenda non tenetur
-            magni reprehenderit nostrum optio iste voluptas dolor. Nisi
-            necessitatibus ex dignissimos quod dolores qui fuga doloribus
-            incidunt odio cumque et quam at nesciunt, sed illum. Labore
-            distinctio voluptates modi sapiente, eveniet eius quod! Ab repellat
-            sequi perferendis accusamus reiciendis, delectus nemo nihil
-            consequatur praesentium facilis atque quaerat magnam tempore labore
-            ullam ea porro pariatur fugit quod quos eius laudantium.
-            Exercitationem minima, error quia nesciunt reprehenderit eius
-            tempore fugiat quis, accusantium magni officiis ducimus consectetur
-            quisquam soluta nisi deserunt architecto hic blanditiis debitis enim
-            quaerat ipsam! Ullam cumque praesentium dolores ad cum? Perspiciatis
-            impedit quibusdam exercitationem. Doloribus aperiam iure blanditiis
-            soluta repellat magnam atque laudantium ratione dignissimos omnis
-            maiores dolorum est nam aspernatur consequatur eligendi quam quaerat
-            in dicta hic illum fugiat, molestias vero! Beatae perspiciatis, quod
-            placeat laborum minima accusamus nulla odit officia, neque quasi
-            quisquam. Inventore consequuntur commodi ipsam quaerat quidem,
-            possimus non saepe, nisi esse culpa velit, neque accusantium ad.
-            Neque autem repellat odio fugit perspiciatis pariatur unde
-            blanditiis labore! Doloremque, nobis facere dicta sed veniam
-            molestiae voluptatibus eligendi neque dolore, dolorem error. Nam
-            sapiente rerum debitis molestias quaerat velit mollitia similique?
-            Neque, cumque sunt aliquam voluptatem rerum explicabo, nemo quod
-            tempore est dignissimos debitis. Enim delectus maiores, debitis
-            dicta, eos quasi accusamus inventore, commodi doloremque quaerat
-            aperiam expedita doloribus quia possimus harum repellat quod sint
-            esse cupiditate? Blanditiis nostrum animi aperiam debitis libero.
-            Eius ipsam odio quaerat, earum, magni optio doloribus adipisci
-            aperiam voluptatibus accusamus aliquam.
+          <p class="font">
+            {{ ceneryInfo.infomation }}
           </p>
           <div class="number">
             <div><Icon type="md-thumbs-up" size="50" title="赞" />66</div>
@@ -209,18 +126,26 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 import Header from "./Header.vue";
 // 高德地图
-import AMap from 'vue-amap';
-import axios from 'axios';
+import AMap from "vue-amap";
 
 Vue.use(AMap);
 // 初始化高德地图的 key 和插件
 AMap.initAMapApiLoader({
-    key: '0a125e10974f3f7832802dbb904b29c1',
-    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
-    v: '1.4.4'
+  key: "0a125e10974f3f7832802dbb904b29c1",
+  plugin: [
+    "AMap.Autocomplete",
+    "AMap.PlaceSearch",
+    "AMap.Scale",
+    "AMap.OverView",
+    "AMap.ToolBar",
+    "AMap.MapType",
+    "AMap.PolyEditor",
+    "AMap.CircleEditor",
+  ],
+  v: "1.4.4",
 });
 
 export default {
@@ -233,23 +158,56 @@ export default {
       value2: 0,
       infomation: false,
       valueDisabled: 2,
-      //   高德地图配置
-      city:'普洱',
+      //  高德地图配置
+      city: "",
+      // 地图显示等级
       zoom: 15,
+      // 地图中心点
       center: [125.441458, 43.883363],
+      // 景点信息
+      ceneryInfo: {},
+      img1: "",
+      img2: "",
+      img3: "",
+      img4: "",
+      img5: "",
     };
   },
-  methods:{
-    getCenter(){
-      let Url=`https://restapi.amap.com/v3/geocode/geo?address=北京市朝阳区阜通东大街6号&output=JSON&key=4454e91b25f893ac9603dbb2ade95316`
-      axios.get(Url).then((val)=>{
-        console.log(val.data.geocodes[0].location);
-      })
-    }
-  },
-  created(){
+  methods: {
+    // 获取中心点
+    getCenter() {
+      let address = this.ceneryInfo.name.replace(/[a-zA-Z ]*[a-zA-Z ]/, "");
+      console.log(address);
+      let Url = `https://restapi.amap.com/v3/geocode/geo?address=${address}&output=JSON&key=4454e91b25f893ac9603dbb2ade95316`;
+      this.$http.get(Url).then((val) => {
+        if (val.data.geocodes[0].location) {
+          this.center = val.data.geocodes[0].location.split(",");
+        }
+      }).catch(console.log);
+    },
+    // 获取景点信息
+    async getSceneryInfo() {
+      let name = window.sessionStorage.getItem("sceneryName");
+      console.log(name);
+      const { data: res } = await this.$http.post(
+        "http://localhost:8080/api/SceneryInfo/scenery",
+        {
+          scenery: name,
+        }
+      );
 
-  }
+      this.ceneryInfo = res[0];
+      this.img1 = res[0].sceneryImgUrl[0];
+      this.img2 = res[0].sceneryImgUrl[1];
+      this.img3 = res[0].sceneryImgUrl[2];
+      this.img4 = res[0].sceneryImgUrl[3];
+      this.img5 = res[0].sceneryImgUrl[4];
+      this.getCenter();
+    },
+  },
+  created() {
+    this.getSceneryInfo();
+  },
 };
 </script>
 
@@ -341,15 +299,21 @@ img {
   color: red;
 }
 
-.number{
+.number {
+  position: absolute;
   display: flex;
-  width: 1536p;
+  width: 1536px;
   height: 50px;
+  bottom: 50px;
 }
 
-.number div{
+.number div {
   flex: 1;
   text-align: center;
 }
 
+.font {
+  text-indent: 2em;
+  font-size: 16px;
+}
 </style>

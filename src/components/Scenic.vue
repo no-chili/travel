@@ -6,33 +6,39 @@
     <div class="bar">
       <h1 class="scenerytitle">推荐景点</h1>
       <ul class="scenerycard">
-        <li class="card" @click="getc">
-          <p>西湖</p>
+        <li v-for="(item,index) in rec" :key="index"  class="card" @click="getc(item.name)">
+          <img :src="item.sceneryImgUrl[0]">
+          <p>{{item.name}}</p>
         </li>
-        <li class="card"></li>
-        <li class="card"></li>
-        <li class="card"></li>
-        <li class="card"></li>
-        <li class="card"></li>
+        <!-- <li class="card" @click="getc()">
+          <p>故宫</p>
+        </li>
+        <li class="card" @click="getc()">
+          <p>滕王阁</p>
+        </li>
+        <li class="card" @click="getc()">
+          <p>恭王府</p>
+        </li>
+        <li class="card" @click="getc()">
+          <p>上海海洋水族馆</p>
+        </li>
+        <li class="card" @click="getc()">
+          <p>西街</p>
+        </li> -->
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+
 export default {
   name: "Scenic",
+  props:["rec"],
   methods:{   
-    getc(){
-      axios.post('http://localhost:8080/api/SceneryInfo/city',{
-        city:'普洱'
-      }).then((res)=>{
-        console.log(res);
-      }).catch((err)=>{
-        console.log(err);
-      })
-      
+    getc(value){
+      console.log(value);
+      window.localStorage.setItem('sceneryName',value)
     }
   }
 };
@@ -92,6 +98,7 @@ export default {
 }
 
 .card {
+  position: relative;
   cursor: pointer;
   float: left;
   width: 175px;
@@ -103,14 +110,22 @@ export default {
   text-align: center;
   transition:all 0.5s;
   color:transparent;
+  overflow: hidden;
   
 }
 
+.card li{
+  background-color: #656;
+}
+
 .card:hover{
-  color: rgb(202, 191, 191);
+  color: rgb(46, 19, 19);
 }
 
 .card p {
-  margin-top: 80px;
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  z-index: 2;
 }
 </style>
