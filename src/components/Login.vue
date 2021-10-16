@@ -67,6 +67,7 @@ export default {
     };
   },
   methods: {
+    // 切换注册登录
     change() {
       this.flag = !this.flag;
       console.log(this.flag);
@@ -77,15 +78,29 @@ export default {
       }
     },
     // 发起登录请求
-    login() {
+    async login() {
       if (this.loginInfo.username && this.loginInfo.password) {
         //发起网络请求
+        const{data:res}= await this.$http.post('http://localhost:8080/api/login',{
+          username: this.loginInfo.username,
+          password: this.loginInfo.password
+        })
+        console.log(res);
+        if(res.status!==200){
+          return alert(res.message)
+        }else{
+          alert(res.message)
+          //保存token
+          window.sessionStorage.setItem('token',res.token)
+          // 跳转页面
+          this.$router.push('/mylog')
+        }
       } else {
         return alert("用户名和密码不允许为空");
       }
     },
     // 发起注册请求
-    register() {
+    async register() {
       if (
         this.registerInfo.username &&
         this.registerInfo.password &&
@@ -96,6 +111,17 @@ export default {
           return alert("两次密码不一致");
         } else {
           //发起网络请求
+          const{data:res} =await this.$http.post('http://localhost:8080/api/regist',{
+            username:this.registerInfo.username,
+            password:this.registerInfo.password,
+            email:this.registerInfo.email
+          })
+          console.log(res);
+          if(res.status!==200){
+            return alert(res.message)
+          }else{
+            return alert('注册成功')
+          }
         }
       }else{
         return alert('注册信息不完整')

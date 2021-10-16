@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
-import axios from "axios";
+import axios from "axios"
+
 // import Vuex from 'vuex'
 // import store from './store/index'
 
-axios.defaults.headers = { 'Content-Type': 'application/json' }
+axios.defaults.headers = {
+    'Content-Type': 'application/json',
+    'authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+}
 Vue.prototype.$http = axios
 
 // ui组件
@@ -22,6 +26,7 @@ Vue.use(ViewUI);
 // 使用Vuex
 // Vue.use(Vuex);
 Vue.config.productionTip = false
+
 
 new Vue({
     // store,

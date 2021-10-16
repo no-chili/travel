@@ -10,21 +10,6 @@
           <img :src="item.sceneryImgUrl[0]">
           <p>{{item.name}}</p>
         </li>
-        <!-- <li class="card" @click="getc()">
-          <p>故宫</p>
-        </li>
-        <li class="card" @click="getc()">
-          <p>滕王阁</p>
-        </li>
-        <li class="card" @click="getc()">
-          <p>恭王府</p>
-        </li>
-        <li class="card" @click="getc()">
-          <p>上海海洋水族馆</p>
-        </li>
-        <li class="card" @click="getc()">
-          <p>西街</p>
-        </li> -->
       </ul>
     </div>
   </div>
@@ -38,7 +23,8 @@ export default {
   methods:{   
     getc(value){
       console.log(value);
-      window.localStorage.setItem('sceneryName',value)
+      window.sessionStorage.setItem('sceneryName',value)
+      this.$router.push('/sceneryinfo')
     }
   }
 };

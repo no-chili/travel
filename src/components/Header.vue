@@ -12,11 +12,9 @@
 export default {
     name:'Header',
     methods:{
-      gotoHome(){
-        this.$router.push('/')
+      gotoHome(){      
       },
       gotoMyLog(){
-        this.$router.push('/mylog')
       }
     }
 }

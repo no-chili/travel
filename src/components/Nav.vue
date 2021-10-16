@@ -41,7 +41,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="http://localhost:8080/#/home" @click="signOut">
             <span class="icon"><i class="bx bxs-log-out"></i></span>
             <span class="title">Sign-Out</span>
           </a>
@@ -54,6 +54,12 @@
 <script>
 export default {
   name: "Nav",
+  methods:{
+    signOut(){
+      // 清空token
+      window.sessionStorage.setItem('token','')
+    }
+  }
 };
 </script>
 

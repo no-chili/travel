@@ -20,7 +20,7 @@ export default {
     gotoInfo(value){
       console.log(value);
       window.sessionStorage.setItem('sceneryName',value)  
-      this.$router.push('/sceneryinfo')
+      this.$router.push('/sceneryinfo').catch(() =>{})
     }
   }
 };
@@ -29,7 +29,8 @@ export default {
 <style scoped>
 .card {
   cursor: pointer;
-  float: left;
+  /* float: left; */
+  display: inline-block;
   margin: 20px 18.5px;
   width: 200px;
   height: 250px;
@@ -63,5 +64,15 @@ export default {
 
 .card:hover{
   color: #333;
+  /* zoom: 1; */
 }
+/* 清除浮动 */
+/* .card::after{
+  content: '';
+  height: 0;
+  line-height: 0;
+  display: block;
+  visibility: hidden;
+  clear: both;
+} */
 </style>

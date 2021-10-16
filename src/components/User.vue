@@ -7,39 +7,24 @@
           alt=""
         />
       </div>
-      <h1>name</h1>
+      <h1>{{infomation.username}}</h1>
       <div class="myinfo">
         <div class="info_item">
           <ul>
-            <li>ID:7777785619</li>
-            <li>邮箱:18875854140@163.com</li>
-            <li>电话:18875854140</li>
-            <li>地址:浙江省丽水市龙泉市安仁镇刘凡村下反而宁回复</li>
+            <li>ID:{{infomation._id}}</li>
+            <li>邮箱:{{infomation.email}}</li>
+            <li>电话:{{infomation.phone}}</li>
+            <li>地址:{{infomation.address}}</li>
           </ul>
         </div>
         <div class="info_item">
           <ul>
             <h3>想去:</h3>
-            <li>fys</li>
-            <li>fys</li>
-            <li>fys</li>
-            <li>fys</li>
-            <li>fys</li>
-            <li>fys</li>
-            <li>fys</li>
-            <li>fys</li>
-            <li>fys</li>
-            <li>fys</li>
-            <li>fys</li>
-            <li>fys</li>
+            <li v-for="(item,index) in infomation.wantTO" :key="index">{{item}}</li>
           </ul>
         </div>
-        <div class="info_item">
-          不知道写什么功能了
-        </div>
-        <div class="info_item">
-          先空着，想到什么可以写再补吧
-        </div>
+        <a href="https://github.com/no-chili/travel"><div class="info_item github"></div></a>
+        <a href="https://no-chili.github.io/"><div class="info_item blog"></div></a>   
       </div>
     </div>
   </div>
@@ -48,6 +33,24 @@
 <script>
 export default {
   name: "User",
+  data() {
+    return{
+      infomation: {}
+    }
+  },
+  methods: {
+    // 获取个人信息
+    async getInfomation() {
+      const { data: res } = await this.$http.get(
+        "http://localhost:8080/api/profile"
+      )
+      this.infomation = res;
+     
+    },
+  },
+  created() {
+    this.getInfomation();
+  },
 };
 </script>
 
@@ -99,9 +102,24 @@ export default {
 .info_item ul {
   float: left;
 }
-.info_item ul li{
+.info_item ul li {
+  margin-top: 2px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.github{
+  cursor: pointer;
+  background: url(../assets/svg/github.svg) no-repeat center;
+  background-size: 50px;
+  background-color: rgba(68, 204, 209, 0.3);
+}
+
+.blog{
+  cursor: pointer;
+  background: url(../assets/svg/blog.svg) no-repeat center;
+  background-size: 50px;
+  background-color: rgba(68, 204, 209, 0.3);
 }
 </style>

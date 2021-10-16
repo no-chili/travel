@@ -102,7 +102,7 @@
         </div>
         <ul class="footer">
           <li><Icon type="md-thumbs-up" size="50" title="赞" /></li>
-          <li><Icon type="md-heart" size="50" title="收藏" /></li>
+          <li><Icon type="md-heart" size="50" title="收藏" @click="addWantTo" /></li>
           <li><Icon type="ios-chatbubbles" size="50" title="评论" /></li>
         </ul>
         <Drawer
@@ -204,6 +204,17 @@ export default {
       this.img5 = res[0].sceneryImgUrl[4];
       this.getCenter();
     },
+    // 添加为想去
+    async addWantTo(){
+      const {data:res}=await this.$http.post('http://localhost:8080/api/addwantto',{
+        wantto:this.ceneryInfo.name
+      })
+      if(res.status!==200){
+        alert('添加失败')
+      }else{
+        alert('添加成功')
+      }
+    }
   },
   created() {
     this.getSceneryInfo();

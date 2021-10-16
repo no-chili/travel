@@ -2,9 +2,9 @@
   <div class="message">
     <h1 class="t_title" @click="gotoUser">TRAVEL</h1>
     <div class="title">
-      <div class="tiandi">见天地,</div>
-      <div class="zhongsheng">见众生,</div>
-      <div class="ziji">见自己</div>
+      <div class="tiandi">见自己,</div>
+      <div class="zhongsheng">见天地,</div>
+      <div class="ziji">见众生</div>
     </div>
   </div>
 </template>
@@ -36,7 +36,6 @@ export default {
   align-items: center;
   width: 1000px;
   height: 200px;
-  /* background-color: #fff; */
   font-size: 50px;
   animation: travel 3s forwards;
   animation-delay: 4.5s;
@@ -95,8 +94,14 @@ export default {
 }
 
 @keyframes t_travel {
+  40%{
+    transform: rotate(-15deg);
+  }
+  80%{
+    transform: rotate(15deg);
+  }
   100%{
-    font-size: 50px;
+    transform: rotate(0deg);
   }
 }
 </style>

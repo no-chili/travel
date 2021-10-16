@@ -1,59 +1,83 @@
 <template>
   <div>
-    <div class="message">
-      <div class="log">
+    <div class="message" v-if="logShow">
+    <div class="log" v-for="(item,index) in logs" :key="index">
         <h1 class="title">123</h1>
-        <h5>时间：</h5>
-        <h5>地点：</h5>
+        <h5>时间：{{item.date}}</h5>
+        <h5>地点：{{item.position}}</h5>
         <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-          quas possimus delectus dolore culpa sed non, modi ipsam, suscipit,
-          pariatur illo libero. Minus, fuga doloribus explicabo vero sint
-          debitis eaque, eos quod fugiat nam tempore quo provident iure commodi
-          error distinctio aut tempora. Consequuntur ducimus enim libero amet
-          non quas. Dolores voluptates adipisci commodi! Magnam?
+          {{item.content}}
         </div>
-        <div class="delete">删除</div>
-        <div class="update">修改</div>
-      </div>
-       <div class="log">
-        <h1 class="title">123</h1>
-        <h5>时间：</h5>
-        <h5>地点：</h5>
-        <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-          quas possimus delectus dolore culpa sed non, modi ipsam, suscipit,
-          pariatur illo libero. Minus, fuga doloribus explicabo vero sint
-          debitis eaque, eos quod fugiat nam tempore quo provident iure commodi
-          error distinctio aut tempora. Consequuntur ducimus enim libero amet
-          non quas. Dolores voluptates adipisci commodi! Magnam?
-        </div>
-        <div class="delete">删除</div>
-        <div class="update">修改</div>
-      </div>
-      <div class="add">写笔记</div>
-      <div class="newlog">
-        <div class="log_title"><label>title</label><input type="text" /></div>
-        <div class="where"><label>地点</label><input type="text" /></div>
-        <div class="logcontent">
-          <textarea class="text" name="" id="" cols="60" rows="10"></textarea>
-        </div>
-        <div class="cancel">待会写</div>
-        <div class="commit">写完了</div>
+        <div class="delete" @click="deletelog">删除</div>
+        <div class="update" @click="updatelog">修改</div>
       </div>
     </div>
+    <div class="newlog" v-if="!logShow">
+        <div class="log_title"><label>title</label><input type="text" v-model="title" /></div>
+        <div class="where"><label>地点</label><input type="text" v-model="position"/></div>
+        <div class="logcontent">
+          <textarea class="text" name="" id="" cols="60" rows="10" v-model="content"></textarea>
+        </div>
+        <div class="cancel" @click="logShow=!logShow">待会写</div>
+        <div class="commit" @click="addlog">写完了</div>
+      </div>
+      <div class="add" @click="logShow=!logShow"></div>
   </div>
 </template>
 
 <script>
 export default {
   name: "Message",
+  data(){
+    return{
+      logShow:true,
+      title:'',
+      content:'',
+      date:'',
+      position:'',
+      model:'',
+      logs:[]
+    }
+  },
+  methods:{
+    //
+    updatelog(val){
+      console.log(val);
+    },
+    //
+    async addlog(){
+      const{data:res}= await this.$http.post('http://localhost:8080/api/newlog',{
+        title:this.title,
+        content:this.content,
+        date:new Date(),
+        position:this.position
+      })
+      if(res.status!==200){
+        return alert(res.message)
+      }
+      return alert(res.message)
+    },
+    //
+    deletelog(val){
+      console.log(val);
+    },
+    //渲染所有log
+    async getlog(){
+      const {data:res}=await this.$http.get('http://localhost:8080/api/getlog')
+      this.logs=res.logs
+    }
+  },
+  created(){
+    this.getlog()
+  }
 };
 </script>
 
 <style scoped>
 .message {
   display: flex;
+  overflow: auto;
+  padding-top: 150px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -63,7 +87,7 @@ export default {
 }
 .log {
   position: relative;
-  padding: 15px;
+  padding: 30px;
   width: 1000px;
   border-radius: 20px;
   background-color: #fff;
@@ -122,24 +146,27 @@ export default {
   text-indent: 2em;
 }
 .add {
-  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 10%;
   width: 50px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  background-color: #fff;
-  margin-top: 15px;
+  height: 50px;
+  cursor: pointer;
+  margin: 15px;
   border-radius: 5px;
   transition: all 0.5s;
+  background: url(../assets/svg/编辑.svg) no-repeat center;
+  background-color: #fff;
+  background-size: 25px;
 }
 .add:hover {
   background-color: rgb(226, 224, 224);
   box-shadow: 0 5px 15px;
 }
 .newlog {
-  display: none;
-  position: relative;
   position: absolute;
+  top: 0;
+  left: 20%;
   font-size: 20px;
   width: 1000px;
   height: 100%;
