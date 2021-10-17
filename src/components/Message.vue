@@ -2,14 +2,14 @@
   <div>
     <div class="message" v-if="logShow">
     <div class="log" v-for="(item,index) in logs" :key="index">
-        <h1 class="title">123</h1>
+        <h1 class="title">{{item.title}}</h1>
         <h5>时间：{{item.date}}</h5>
         <h5>地点：{{item.position}}</h5>
         <div class="content">
           {{item.content}}
         </div>
-        <div class="delete" @click="deletelog">删除</div>
-        <div class="update" @click="updatelog">修改</div>
+        <div class="delete" @click="deletelog(item._id)">删除</div>
+        <div class="update" @click="updatelog(item)">修改</div>
       </div>
     </div>
     <div class="newlog" v-if="!logShow">
@@ -36,16 +36,40 @@ export default {
       date:'',
       position:'',
       model:'',
-      logs:[]
+      logs:[],
+      id:''
     }
   },
   methods:{
-    //
-    updatelog(val){
-      console.log(val);
+    //改
+    async updatelog(val){
+      this.logShow=!this.logShow
+      this.id=val._id
+      this.title=val.title
+      this.content=val.content
+      this.position=val.position
+      this.model='update'
     },
-    //
+    //写
     async addlog(){
+      this.logShow=!this.logShow
+      if(this.model=='update'){
+        const{data:res} = await this.$http.post('http://localhost:8080/api/updatelog',{
+        _id:this.id,
+        title:this.title,
+        content:this.content,
+        date:new Date(),
+        position:this.position
+      })
+      if(res.status!==200){
+        this.model=''
+        return alert(res.message)
+      }
+      this.model=''
+      this.getlog()
+      return alert(res.message)
+      }
+
       const{data:res}= await this.$http.post('http://localhost:8080/api/newlog',{
         title:this.title,
         content:this.content,
@@ -55,13 +79,22 @@ export default {
       if(res.status!==200){
         return alert(res.message)
       }
+      this.getlog()
       return alert(res.message)
     },
-    //
-    deletelog(val){
-      console.log(val);
+    //删
+    async deletelog(val){
+      const{data:res} = await this.$http.post('http://localhost:8080/api/deletelog',{
+        _id:val
+      })
+      if(res.status!==200){
+        return alert(res.message)
+      }
+      this.getlog()
+      return alert(res.message)
+      
     },
-    //渲染所有log
+    //查
     async getlog(){
       const {data:res}=await this.$http.get('http://localhost:8080/api/getlog')
       this.logs=res.logs
@@ -77,7 +110,7 @@ export default {
 .message {
   display: flex;
   overflow: auto;
-  padding-top: 150px;
+  padding-top: 50px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -87,11 +120,11 @@ export default {
 }
 .log {
   position: relative;
-  padding: 30px;
+  padding:30px;
   width: 1000px;
   border-radius: 20px;
   background-color: #fff;
-  margin: 15px 0;
+  margin: 20px 0;
   transition: all 0.5s;
 }
 .delete{
@@ -136,7 +169,7 @@ export default {
 }
 
 .title {
-  margin-top: 5px;
+  margin-top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;

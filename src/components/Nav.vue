@@ -57,7 +57,7 @@ export default {
   methods:{
     signOut(){
       // 清空token
-      window.sessionStorage.setItem('token','')
+      window.localStorage.setItem('token','')
     }
   }
 };

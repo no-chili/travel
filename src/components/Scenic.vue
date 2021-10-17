@@ -23,7 +23,7 @@ export default {
   methods:{   
     getc(value){
       console.log(value);
-      window.sessionStorage.setItem('sceneryName',value)
+      window.localStorage.setItem('sceneryName',value)
       this.$router.push('/sceneryinfo')
     }
   }

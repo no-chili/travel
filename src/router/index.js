@@ -50,10 +50,11 @@ const routes = [{
         }, {
             path: '/message',
             component: Message
-        }, {
-            path: '/help',
-            component: Help
         }]
+    },
+    {
+        path: '/help',
+        component: Help
     }
 ]
 
@@ -67,7 +68,7 @@ router.beforeEach((to, from, next) => {
     if (to.path == '/login') return next()
     if (to.path == '/home') return next()
     if (to.path == '/') return next()
-    let tokenStr = window.sessionStorage.getItem('token')
+    let tokenStr = window.localStorage.getItem('token')
     if (!tokenStr) return next('/login')
     next()
 })

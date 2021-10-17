@@ -91,7 +91,8 @@ export default {
         }else{
           alert(res.message)
           //保存token
-          window.sessionStorage.setItem('token',res.token)
+          window.localStorage.setItem('token',res.token)
+          console.log(res.token);
           // 跳转页面
           this.$router.push('/mylog')
         }

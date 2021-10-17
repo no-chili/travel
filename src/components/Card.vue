@@ -2,7 +2,7 @@
 <div>
   <div class="card" v-for="(item,index) in it" :key="index" @click="gotoInfo(item.name)">
     <div class="sceneryimg">
-        <img :src="item.sceneryImgUrl[0]">
+        <img :src="item.sceneryImgUrl[0]?item.sceneryImgUrl[0]:'https://pica.zhimg.com/80/v2-798dc758dbe699ca40a410fc93d7717f_720w.jpg?source=1940ef5c'">
     </div>
     <h2>{{item.name}}</h2>
     <p class="sceneryinfo">
@@ -19,7 +19,7 @@ export default {
   methods:{
     gotoInfo(value){
       console.log(value);
-      window.sessionStorage.setItem('sceneryName',value)  
+      window.localStorage.setItem('sceneryName',value)  
       this.$router.push('/sceneryinfo').catch(() =>{})
     }
   }
@@ -64,15 +64,6 @@ export default {
 
 .card:hover{
   color: #333;
-  /* zoom: 1; */
+
 }
-/* 清除浮动 */
-/* .card::after{
-  content: '';
-  height: 0;
-  line-height: 0;
-  display: block;
-  visibility: hidden;
-  clear: both;
-} */
 </style>

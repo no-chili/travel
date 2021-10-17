@@ -8,7 +8,7 @@ import axios from "axios"
 
 axios.defaults.headers = {
     'Content-Type': 'application/json',
-    'authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+    'authorization': `Bearer ${window.localStorage.getItem('token')}`
 }
 Vue.prototype.$http = axios
 

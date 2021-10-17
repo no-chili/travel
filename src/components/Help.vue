@@ -1,5 +1,9 @@
 <template>
   <div class="message">
+    <div class="leaf">
+      <div class="leafsvg" v-for="(item,index) in leaf" :key="index" :style="item"></div>
+      <div class="snowsvg" v-for="(item,index) in snow" :key="'@'+index" :style="item"></div>
+    </div>
     <h1 class="t_title" @click="gotoUser">TRAVEL</h1>
     <div class="title">
       <div class="tiandi">见自己,</div>
@@ -12,23 +16,85 @@
 <script>
 export default {
   name: "Help",
+  data(){
+    return{
+      leaf:[],
+      snow:[]
+    }
+  },
   methods:{
+    //跳转用户主页
     gotoUser(){
       this.$router.push('/user')
+      location.reload()
+    },
+    //生成雪花和落叶
+    grow(){
+      let i=0;
+      while(i<35){
+        this.leaf.push({
+          left:Math.random()*2000+"px",
+          transform: `rotate(${Math.ceil(Math.random()*900)}deg)`,
+          'animation-duration':Math.ceil(Math.random()*50)+6+'s',
+          'animation-delay':Math.ceil(Math.random()*5)+'s' 
+        })
+        this.snow.push({
+          left:Math.random()*1500+"px",
+          'animation-duration':Math.ceil(Math.random()*30)+5+'s',
+          'animation-delay':Math.ceil(Math.random()*5)+'s' 
+        })
+        i++;
+      }
+      console.log(this.leaf);
+      console.log(this.snow);
     }
+  },
+  created(){
+    this.grow()
   }
 };
 </script>
 
 <style scoped>
+
 .message {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: rgb(119, 190, 199);
-  margin-left: 80px;
   flex-direction: column;
+}
+.leaf{
+ top: 0;
+ position: absolute;
+ z-index: 0;
+ width: 100%;
+ height: 500px; 
+ background:linear-gradient(to bottom,rgb(103, 168, 177),rgb(119, 190, 199));
+}
+
+.leafsvg{
+  position: absolute;
+  top: -60px;
+  width: 50px;
+  height: 50px;
+  background: url(../assets/svg/叶子3.svg) no-repeat center;
+  background-size: 35px;
+  z-index: 55;
+  transform-origin:20% 50%;
+  animation: fall 15s infinite linear,fealrotate 5s infinite ease-in-out;
+}
+.snowsvg{
+  top: -60px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: url(../assets/svg/雪花.svg) no-repeat center;
+  background-size: 35px;
+  z-index: 55;
+  animation: fall 15s infinite linear,rotate 15s infinite;
 }
 .title {
   display: flex;
@@ -102,6 +168,34 @@ export default {
   }
   100%{
     transform: rotate(0deg);
+  }
+}
+
+@keyframes fall{
+  0%{
+    top: -50px;
+  }
+  100%{
+    opacity: 0;
+    top: 500px;
+  }
+}
+
+@keyframes rotate {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes fealrotate{
+  0%{
+    
+  }
+  100%{
+    transform: rotate(55deg);
   }
 }
 </style>

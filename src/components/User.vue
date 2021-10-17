@@ -3,8 +3,7 @@
     <div class="idcard">
       <div class="header">
         <img
-          src="http://pic1.win4000.com/wallpaper/5/594b273208eb8.jpg"
-          alt=""
+          :src="infomation.headpho?infomation.headpho.data:'https://pica.zhimg.com/80/v2-798dc758dbe699ca40a410fc93d7717f_720w.jpg?source=1940ef5c'"
         />
       </div>
       <h1>{{infomation.username}}</h1>
@@ -45,12 +44,15 @@ export default {
         "http://localhost:8080/api/profile"
       )
       this.infomation = res;
-     
+      console.log(res);
+      
     },
   },
-  created() {
+  async created() {
     this.getInfomation();
   },
+  mounted(){
+  }
 };
 </script>
 

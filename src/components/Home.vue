@@ -36,7 +36,7 @@
       </div>
     </section>
     <footer>
-      <h1>框架</h1>
+      <h1>科技创新月作品</h1>
     </footer>
   </div>
 </template>
@@ -110,7 +110,8 @@ export default {
     window.addEventListener("scroll", this.handleScroll);
   },
   created() {
-    this.getWeather(), this.getdata();
+    this.getWeather(), 
+    this.getdata();
   },
 };
 </script>
@@ -230,7 +231,7 @@ footer {
   align-items: center;
   width: 100vw;
   height: 200px;
-  background-color: rgb(83, 163, 80);
+  background-color:rgb(113, 174, 182);
 }
 @keyframes see {
   0% {
